@@ -1,0 +1,21 @@
+{
+    "name":        "darvinstudio/darvin-backup-bundle",
+    "description": "This bundle provides backup functionality for Symfony-based applications.",
+    "keywords":    ["backup", "symfony"],
+    "type":        "symfony-bundle",
+    "license":     "MIT",
+    "authors": [
+        {
+            "name":     "Lev Semin",
+            "email":    "lev@darvin-studio.ru",
+            "homepage": "https://www.darvin-studio.ru"
+        }
+    ],
+    "require": {
+        "symfony/symfony": "^3.0"
+    },
+
+    "autoload": {
+        "psr-4": { "Darvin\\BackupBundle\\": "" }
+    }
+}
