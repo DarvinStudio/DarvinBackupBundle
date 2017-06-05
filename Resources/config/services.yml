@@ -6,6 +6,10 @@ services:
         class: Darvin\BackupBundle\BackupConfiguration\FilesBackupConfiguration
         abstract: true
         public: false
+        
+    darvin_backup.backup_file_manager:
+        class: Darvin\BackupBundle\BackupFileManager\BackupFileManager
+        arguments: ['@darvin_backup.configurator']
 #    darvin_backup.example:
 #        class: DarvinBackupBundle\Example
 #        arguments: ["@service_id", "plain_value", "%parameter%"]
