@@ -20,6 +20,11 @@ class FilesBackupConfiguration
     /**
      * @var string
      */
+    private $configName;
+    
+    /**
+     * @var string
+     */
     private $path;
 
     /**
@@ -34,15 +39,25 @@ class FilesBackupConfiguration
 
     /**
      * FilesBackupConfiguration constructor.
+     * @param $configName
      * @param string $path
      * @param string[] $excludedPaths
      * @param int $incrementalCopiesCount
      */
-    public function __construct($path, array $excludedPaths, $incrementalCopiesCount)
+    public function __construct($configName, $path, array $excludedPaths, $incrementalCopiesCount)
     {
+        $this->configName = $configName;
         $this->path = $path;
         $this->excludedPaths = $excludedPaths;
         $this->incrementalCopiesCount = $incrementalCopiesCount;
+    }
+
+    /**
+     * @return string
+     */
+    public function getConfigName()
+    {
+        return $this->configName;
     }
 
     /**

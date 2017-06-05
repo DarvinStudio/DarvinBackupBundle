@@ -55,6 +55,7 @@ class DarvinBackupExtension extends Extension
                 throw new \RuntimeException(sprintf('Container already has %s service', $id));
             }
             $filesConfigDefinitions[$id] = (new DefinitionDecorator($parentFilesDefinition))
+                ->addArgument($key)
                 ->addArgument($fileConfig['path'])
                 ->addArgument($fileConfig['excluded'])
                 ->addArgument($fileConfig['incremental_copies_count']);
