@@ -20,6 +20,11 @@ class BackupConfiguration
     /**
      * @var string
      */
+    private $title;
+    
+    /**
+     * @var string
+     */
     private $backupDir;
 
     /**
@@ -34,15 +39,33 @@ class BackupConfiguration
 
     /**
      * BackupConfiguration constructor.
+     * @param string $title
      * @param string $backupDir
      * @param bool $backupDatabase
      * @param FilesBackupConfiguration[] $filesConfiguration
      */
-    public function __construct($backupDir = null, $backupDatabase = false, array $filesConfiguration = [])
+    public function __construct($title, $backupDir = null, $backupDatabase = false, array $filesConfiguration = [])
     {
+        $this->title = $title;
         $this->backupDir = $backupDir;
         $this->backupDatabase = $backupDatabase;
         $this->filesConfiguration = $filesConfiguration;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * @param string $title
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
     }
 
     /**

@@ -28,6 +28,7 @@ class Configuration implements ConfigurationInterface
         
         $rootNode
             ->children()
+                ->scalarNode('backup_title')->cannotBeEmpty()->defaultValue('backup')->end()
                 ->scalarNode('backup_dir')->isRequired()->cannotBeEmpty()->end()
                 ->arrayNode('files')
                     ->prototype('array')

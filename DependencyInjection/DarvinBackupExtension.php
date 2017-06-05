@@ -42,6 +42,7 @@ class DarvinBackupExtension extends Extension
         // build configurator
         $configuratorDefinition = $container
             ->getDefinition('darvin_backup.configurator')
+            ->addArgument($config['backup_title'])
             ->addArgument($config['backup_dir'])
             ->addArgument($config['backup_database']);
 
