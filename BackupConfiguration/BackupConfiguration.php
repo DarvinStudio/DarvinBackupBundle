@@ -21,11 +21,6 @@ class BackupConfiguration
      * @var string
      */
     private $title;
-    
-    /**
-     * @var string
-     */
-    private $backupDir;
 
     /**
      * @var bool
@@ -47,7 +42,6 @@ class BackupConfiguration
     public function __construct($title, $backupDir = null, $backupDatabase = false, array $filesConfiguration = [])
     {
         $this->title = $title;
-        $this->backupDir = $backupDir;
         $this->backupDatabase = $backupDatabase;
         $this->filesConfiguration = $filesConfiguration;
     }
@@ -66,24 +60,6 @@ class BackupConfiguration
     public function setTitle($title)
     {
         $this->title = $title;
-    }
-
-    /**
-     * @return string
-     */
-    public function isBackupDir()
-    {
-        return $this->backupDir;
-    }
-
-    /**
-     * @param string $backupDir
-     * @return $this
-     */
-    public function setBackupDir($backupDir)
-    {
-        $this->backupDir = $backupDir;
-        return $this;
     }
 
     /**
