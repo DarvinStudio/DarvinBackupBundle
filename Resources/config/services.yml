@@ -1,6 +1,10 @@
 services:
     darvin_backup.configurator:
         class: Darvin\BackupBundle\BackupConfiguration\BackupConfiguration
+        arguments: [ '@darvin_backup.storage_configuration' ]
+
+    darvin_backup.storage_configuration:
+        class: Darvin\BackupBundle\BackupConfiguration\StorageConfiguration
         
     darvin_backup.files_configurator:
         class: Darvin\BackupBundle\BackupConfiguration\FilesBackupConfiguration
@@ -10,6 +14,11 @@ services:
     darvin_backup.backup_file_manager:
         class: Darvin\BackupBundle\BackupFileManager\BackupFileManager
         arguments: ['@darvin_backup.configurator']
+
+
+    darvin_backup.storage_type.null_storage_type:
+        class: Darvin\BackupBundle\Storage\Type\NullStorageType
+        tags: ['darvin_backup.storage_type']
 #    darvin_backup.example:
 #        class: DarvinBackupBundle\Example
 #        arguments: ["@service_id", "plain_value", "%parameter%"]

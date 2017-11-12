@@ -33,15 +33,26 @@ class BackupConfiguration
     private $filesConfiguration = [];
 
     /**
+     * @var StorageConfiguration
+     */
+    private $storageConfiguration;
+
+    /**
      * BackupConfiguration constructor.
-     * @param string $title
-     * @param string $backupDir
-     * @param bool $backupDatabase
+     *
+     * @param StorageConfiguration       $storageConfiguration
+     * @param string                     $title
+     * @param bool                       $backupDatabase
      * @param FilesBackupConfiguration[] $filesConfiguration
      */
-    public function __construct($title, $backupDir = null, $backupDatabase = false, array $filesConfiguration = [])
-    {
+    public function __construct(
+        StorageConfiguration $storageConfiguration,
+        $title,
+        $backupDatabase = false,
+        array $filesConfiguration = []
+    ) {
         $this->title = $title;
+        $this->storageConfiguration = $storageConfiguration;
         $this->backupDatabase = $backupDatabase;
         $this->filesConfiguration = $filesConfiguration;
     }
@@ -72,11 +83,13 @@ class BackupConfiguration
 
     /**
      * @param bool $backupDatabase
+     *
      * @return $this
      */
     public function setBackupDatabase($backupDatabase)
     {
         $this->backupDatabase = $backupDatabase;
+
         return $this;
     }
 
@@ -90,35 +103,40 @@ class BackupConfiguration
 
     /**
      * @param FilesBackupConfiguration[] $filesConfiguration
+     *
      * @return $this
      */
     public function setFilesConfiguration($filesConfiguration)
     {
         $this->filesConfiguration = $filesConfiguration;
+
         return $this;
     }
 
     /**
      * @param FilesBackupConfiguration $filesBackupConfiguration
+     *
      * @return $this
      */
-    public function addFilesConfiguration(FilesBackupConfiguration $filesBackupConfiguration) 
+    public function addFilesConfiguration(FilesBackupConfiguration $filesBackupConfiguration)
     {
         $this->filesConfiguration[] = $filesBackupConfiguration;
+
         return $this;
     }
 
     /**
      * @param FilesBackupConfiguration $filesBackupConfiguration
+     *
      * @return $this
      */
-    public function removeFilesConfiguration(FilesBackupConfiguration $filesBackupConfiguration) 
+    public function removeFilesConfiguration(FilesBackupConfiguration $filesBackupConfiguration)
     {
         $key = array_search($filesBackupConfiguration, $this->filesConfiguration);
         if ($key !== false) {
             unset($this->filesConfiguration[$key]);
         }
-        
+
         return $this;
     }
 }

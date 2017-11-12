@@ -39,6 +39,13 @@ class Configuration implements ConfigurationInterface
                     ->end()
                 ->end()
                 ->booleanNode('backup_database')->defaultTrue()->end()
+                ->arrayNode('storage')
+                    ->useAttributeAsKey('type_name')
+                    ->prototype('array')
+                        ->useAttributeAsKey('option_key')
+                        ->prototype('scalar')->end()
+                    ->end()
+                ->end()
             ->end()
         ;
         

@@ -18,6 +18,7 @@ use Symfony\Component\DependencyInjection\DefinitionDecorator;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\DependencyInjection\Reference;
+use Symfony\Component\VarDumper\VarDumper;
 
 
 class DarvinBackupExtension extends Extension
@@ -43,7 +44,6 @@ class DarvinBackupExtension extends Extension
         $configuratorDefinition = $container
             ->getDefinition('darvin_backup.configurator')
             ->addArgument($config['backup_title'])
-            ->addArgument($config['backup_dir'])
             ->addArgument($config['backup_database']);
 
 
@@ -65,6 +65,15 @@ class DarvinBackupExtension extends Extension
 
         foreach (array_keys($filesConfigDefinitions) as $fileConfigId) {
             $configuratorDefinition->addMethodCall('addFilesConfiguration', [new Reference($fileConfigId)]);
+        };
+
+        // build storage config
+        $storageDefinition = $container->getDefinition('darvin_backup.storage_configuration');
+        foreach ($config['storage'] as $type => $options) {
+            $storageDefinition->addMethodCall('addStorageConfig', [
+                $type,
+                $options
+            ]);
         }
     }
 }
